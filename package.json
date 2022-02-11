@@ -1,0 +1,35 @@
+{
+  "name": "umbreon",
+  "version": "0.0.1",
+  "description": "A bOt",
+  "main": "index.js",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node -r dotenv/config ./prod/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thorbenl/umbreon.git"
+  },
+  "author": "Turbz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thorbenl/umbreon/issues"
+  },
+  "homepage": "https://github.com/Thorbenl/umbreon#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.12.0",
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.27.0",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "ts-node": "^10.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "typescript": "^4.5.5"
+  }
+}
