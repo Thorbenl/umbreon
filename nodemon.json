@@ -1,6 +1,6 @@
 {
   "ignore": [".git", "node_modules", "prod"],
   "watch": ["./src"],
-  "exec": "npm run build && npm run start",
+  "exec": "npm run build && npm run start:prod",
   "ext": "ts"
 }
