@@ -1,12 +1,25 @@
-FROM node:latest
+FROM node:lts-alpine AS builder
+WORKDIR /var/bot
 
-RUN mkdir -p /usr/src/bot
-WORKDIR /usr/src/bot
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile && yarn cache clean
 
-COPY package.json /usr/src/bot
-RUN npm install
+COPY . .
 
-COPY . /usr/src/bot
-RUN npx tsc
+RUN yarn build
 
-CMD ["node -r dotenv/config ./prod/index.js"]
+# RUNNER
+FROM node:lts-alpine AS runner
+WORKDIR /var/bot
+
+COPY package.json yarn.lock ./
+ARG NODE_ENV=production
+RUN yarn install --frozen-lockfile && yarn cache clean
+
+COPY --from=builder /var/bot/dist/ ./
+
+RUN adduser -S bot
+USER bot
+RUN ls
+
+CMD ["node", "-r", "dotenv/config", "index.js"]
